@@ -1,0 +1,5 @@
+Os sistemas operativos são a base do funcionamento de qualquer computador moderno.
+Eles gerem recursos como memória, processador, armazenamento e dispositivos de entrada e saída.
+A virtualização permite executar múltiplos sistemas num único hardware físico.
+Esta tecnologia é amplamente utilizada em ambientes empresariais e de investigação.
+A eficiência e a segurança dependem de uma correta configuração do sistema.

@@ -1,0 +1,5 @@
+A segurança da informação é uma área fundamental no mundo digital moderno.
+Com o crescimento das redes e dos sistemas distribuídos, proteger dados tornou-se essencial.
+Conceitos como confidencialidade, integridade e disponibilidade são pilares da cibersegurança.
+Ferramentas de análise, auditoria e monitorização ajudam a mitigar riscos e vulnerabilidades.
+A formação contínua dos profissionais é crucial para acompanhar a evolução das ameaças.
