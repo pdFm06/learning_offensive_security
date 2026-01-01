@@ -1,0 +1,10 @@
+2025-01-01 09:00:00 INFO User 'admin' authenticated successfully from 192.168.1.10
+2025-01-01 09:07:00 WARNING Failed login attempt for user 'backup' from 203.0.113.45
+2025-01-01 09:14:00 INFO Scheduled backup job started
+2025-01-01 09:21:00 ERROR Database connection timeout on service 'inventory'
+2025-01-01 09:28:00 INFO Service 'inventory' restarted automatically
+2025-01-01 09:35:00 CRITICAL Unauthorized access attempt blocked by firewall rule ID=FW-1023
+2025-01-01 09:42:00 INFO Backup job completed successfully
+2025-01-01 09:49:00 ERROR Disk space below 5% on /dev/sda1
+2025-01-01 09:56:00 INFO Disk cleanup task executed
+2025-01-01 10:03:00 INFO System health check passed
