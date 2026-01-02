@@ -1,0 +1,2 @@
+#Script simples que lista todos os discos do computador e o espaço dos mesmos.
+Get-Disk | Select-Object -Property Number, FriendlyName, @{Name="TotalSizeGB"; Expression = { [Math]::Round($_.Size / 1GB, 2) } }
