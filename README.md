@@ -1,0 +1,3 @@
+Este repositório será utilizado para guardar projetos/notas/write-ups, PoC, etc...
+Basicamente tudo o que eu irei fazer e aprender na minha jornada em offensive security.
+Por agora, vou apenas adicionar os meus projetos em Python e PowerShell.
