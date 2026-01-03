@@ -1,0 +1,4 @@
+google.com openai.com 192.168.1.1 8.8.8.8 example.org test-site.net
+256.300.1.1 http://badurl.com my_domain..com 10.0.0 999.999.999.999
+validsite.pt sub.domain.co.uk 123.45.67.89 wrong-ip-1.2.3 -site.com
+domain_with_underscores.com localhost 172.16.0.5 bad..domain.pt
