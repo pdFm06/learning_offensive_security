@@ -1,0 +1,18 @@
+
+Here are some valid URLs:
+http://example.com
+https://sub.domain.pt/login
+https://10.0.0.1/admin
+http://test-site.net:8080/path/to/resource
+https://api.service.co.uk/v1/users?id=10
+
+Some invalid or malformed URLs:
+htp://badprotocol.com
+http//missing-colon.com
+https:///too-many-slashes.com
+http://
+http://-badhost.com
+ftp://not-http.com
+justtextwithouturl
+www.example.com
+https://999.999.999.999/admin
