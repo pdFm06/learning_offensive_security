@@ -1,0 +1,115 @@
+"TimeCreated","Id","LevelDisplayName","ProviderName","Message"
+"06/01/2026 14:19:55","16","Informa??es","Microsoft-Windows-Kernel-General","O hist?rico de acessos no ramo de registo \??\C:\Users\pedro\AppData\Local\Packages\Microsoft.YourPhone_8wekyb3d8bbwe\SystemAppData\Helium\User.dat foi limpo durante a atualiza??o de 10 chaves e a cria??o de 3 p?ginas modificadas."
+"06/01/2026 14:19:55","16","Informa??es","Microsoft-Windows-Kernel-General","O hist?rico de acessos no ramo de registo \??\C:\Users\pedro\AppData\Local\Packages\Microsoft.YourPhone_8wekyb3d8bbwe\Settings\settings.dat foi limpo durante a atualiza??o de 56 chaves e a cria??o de 10 p?ginas modificadas."
+"06/01/2026 13:03:12","1","Informa??es","Microsoft-Windows-Power-Troubleshooter","O sistema saiu de um modo de baixo consumo de energia.
+
+Tempo de Suspens?o: ?2026?-?01?-?06T11:38:53.858555400Z
+Hora da Reativa??o: ?2026?-?01?-?06T13:03:11.110223800Z
+
+Origem de Reativa??o: Unknown"
+"06/01/2026 13:03:11","566","Informa??es","Microsoft-Windows-Kernel-Power","A sess?o do sistema transitou de 72 para 74. 
+
+raz?o WinRT 
+
+BootId:  57"
+"06/01/2026 13:03:09","566","Informa??es","Microsoft-Windows-Kernel-Power","A sess?o do sistema transitou de 71 para 72. 
+
+raz?o SxTransition 
+
+BootId:  57"
+"06/01/2026 13:03:09","32","Informa??es","Microsoft-Windows-Kernel-Boot","O bootmgr despendeu 0 ms a aguardar a introdu??o de dados pelo utilizador."
+"06/01/2026 13:03:09","18","Informa??es","Microsoft-Windows-Kernel-Boot","Existem 0x1 op??es de arranque neste sistema."
+"06/01/2026 13:03:09","247","Informa??es","Microsoft-Windows-Kernel-Boot","N?o ? poss?vel carregar Pluton-Windows firmware. StatusCode: STATUS_SUCCESS, Raz?o: Failed to apply firmware."
+"06/01/2026 13:03:09","27","Informa??es","Microsoft-Windows-Kernel-Boot","O tipo de arranque foi 0x2."
+"06/01/2026 13:03:09","25","Informa??es","Microsoft-Windows-Kernel-Boot","A pol?tica de menu de arranque foi 0x0."
+"06/01/2026 13:03:09","30","Informa??es","Microsoft-Windows-Kernel-Boot","O firmware reportou as m?tricas do arranque."
+"06/01/2026 13:03:09","7021","Informa??es","Netwtw10","7021 - Connection telemetry fields and analysis usage"
+"06/01/2026 13:03:09","1038","Informa??es","Microsoft-Windows-TPM-WMI","Pre-attestation health checks confirm that the device is expected to pass attestation.
+ Please see C:\WINDOWS\Logs\MeasuredBoot\0000000412-0000000012.json for detailed information on what checks were made."
+"06/01/2026 13:03:09","1041","Informa??es","Microsoft-Windows-TPM-WMI","Pre-attestation health check detailed information: {""Version"":1,""HealthStatus"":""Attestable"",""Required"":[{""Field"":""TpmPresent"",""Value"":true,""DesiredValue"":true},{""Field"":""TpmMeetsMinimumVersion"",""Value"":true,""DesiredValue"":true},{""Field"":""TpmIsResponsive"",""Value"":true,""DesiredValue"":true},{""Field"":""EkCertIsAvailable"",""Value"":true,""DesiredValue"":true},{""Field"":""TcgLogFound"",""Value"":true,""DesiredValue"":true}],""Expected"":[{""Field"":""PcrsMatchTcgLog"",""Value"":true,""DesiredValue"":true}],""Informational"":[{""Field"":""SecureBootEnabled"",""ValueFromComputer"":true,""ValueFromTcgLog"":true,""DesiredValue"":true,""TcgValueIsVerifiable"":true},{""Field"":""VirtualSecureMemory"",""ValueFromComputer"":false,""ValueFromTcgLog"":false,""DesiredValue"":true,""TcgValueIsVerifiable"":true},{""Field"":""SecureCorePCCompliant"",""ValueFromComputer"":false,""ValueFromTcgLog"":false,""DesiredValue"":true,""TcgValueIsVerifiable"":true}{""Field"":""BootTcgLogFoundInFileSystem"",""Value"":true,""DesiredValue"":true},{""Field"":""CurrentTcgLogFoundInFileSystem"",""Value"":true,""DesiredValue"":true}]}"
+"06/01/2026 13:03:08","7025","Informa??es","Netwtw10","7025 - Dump after return from D3 before cmd "
+"06/01/2026 13:03:08","1","Informa??es","Microsoft-Windows-Kernel-General","A hora do sistema foi alterada para ?2026?-?01?-?06T13:03:08.500000000Z de ?2026?-?01?-?06T11:38:59.029771200Z.
+Tempo Delta: 5049470 ms
+
+Raz?o da Altera??o: System time synchronized with the hardware clock.
+Processo: '' (PID 4).
+
+Hora de RTC: ?2026?-?01?-?06T13:03:08.500000000Z
+O tempo do hor?rio atual: 0
+A hora do RTC est? em UTC: false
+A hora do sistema baseou-se na hora RTC: false"
+"06/01/2026 11:38:59","107","Informa??es","Microsoft-Windows-Kernel-Power","O sistema saiu de suspens?o."
+"06/01/2026 13:03:08","6013","Informa??es","EventLog","O tempo de utiliza??o do sistema ? de 339306 segundos."
+"06/01/2026 11:38:56","6062","Aviso","Netwtw10","6062 - Lso was triggered"
+"06/01/2026 11:38:56","1014","Aviso","Microsoft-Windows-DNS-Client","A resolu??o de nomes para o nome wpad excedeu o tempo limite depois de nenhum dos servidores DNS configurados ter respondido. PID do cliente 7512. "
+"06/01/2026 11:38:54","1","Informa??es","Microsoft-Windows-Power-Troubleshooter","O sistema saiu de um modo de baixo consumo de energia.
+
+Tempo de Suspens?o: ?2026?-?01?-?06T11:38:53.858555400Z
+Hora da Reativa??o: ?2026?-?01?-?06T11:38:53.858555400Z
+
+Origem de Reativa??o: S4 Doze to Hibernate"
+"06/01/2026 11:38:54","16","Informa??es","Microsoft-Windows-Kernel-General","O hist?rico de acessos no ramo de registo \??\C:\Users\pedro\AppData\Local\Packages\Microsoft.LockApp_cw5n1h2txyewy\Settings\settings.dat foi limpo durante a atualiza??o de 3 chaves e a cria??o de 1 p?ginas modificadas."
+"06/01/2026 11:38:54","42","Informa??es","Microsoft-Windows-Kernel-Power","O sistema est? a entrar em estado de suspens?o.
+
+Raz?o da Suspens?o: Hibernate from Sleep - Fixed Timeout"
+"06/01/2026 11:38:53","7021","Informa??es","Netwtw10","7021 - Connection telemetry fields and analysis usage"
+"06/01/2026 11:38:52","7025","Informa??es","Netwtw10","7025 - Dump after return from D3 before cmd "
+"06/01/2026 11:38:52","130","Informa??es","Microsoft-Windows-Kernel-Power","Tempos de S3 do firmware. SuspendStart: 0, SuspendEnd: 0"
+"06/01/2026 11:38:52","131","Informa??es","Microsoft-Windows-Kernel-Power","Tempos de S3 do firmware. ResumeCount: 1, FullResume: 503, AverageResume: 503"
+"06/01/2026 11:38:52","1","Informa??es","Microsoft-Windows-Kernel-General","A hora do sistema foi alterada para ?2026?-?01?-?06T11:38:52.500000000Z de ?2026?-?01?-?06T10:38:57.102133500Z.
+Tempo Delta: 3595397 ms
+
+Raz?o da Altera??o: System time synchronized with the hardware clock.
+Processo: '' (PID 4).
+
+Hora de RTC: ?2026?-?01?-?06T11:38:52.500000000Z
+O tempo do hor?rio atual: 0
+A hora do RTC est? em UTC: false
+A hora do sistema baseou-se na hora RTC: false"
+"06/01/2026 10:38:57","107","Informa??es","Microsoft-Windows-Kernel-Power","O sistema saiu de suspens?o."
+"06/01/2026 10:38:51","42","Informa??es","Microsoft-Windows-Kernel-Power","O sistema est? a entrar em estado de suspens?o.
+
+Raz?o da Suspens?o: System Idle"
+"06/01/2026 10:38:51","566","Informa??es","Microsoft-Windows-Kernel-Power","A sess?o do sistema transitou de 69 para 71. 
+
+raz?o SxTransition 
+
+BootId:  57"
+"06/01/2026 10:38:47","566","Informa??es","Microsoft-Windows-Kernel-Power","A sess?o do sistema transitou de 68 para 69. 
+
+raz?o SessionUnlock 
+
+BootId:  57"
+"06/01/2026 10:05:24","36","Erro","Volsnap","As c?pias sombra do volume C: foram abortadas porque n?o foi poss?vel aumentar o armazenamento de c?pias sombra devido a um limite imposto pelo utilizador."
+"06/01/2026 09:32:11","12","Informa??es","Microsoft-Windows-UserModePowerService","O processo C:\Windows\ImmersiveControlPanel\SystemSettings.exe (ID do processo:18936) rep?s o esquema de pol?ticas de {c5d1f0e6-e66e-4f72-9dc2-1a06a7b1db02} para {c5d1f0e6-e66e-4f72-9dc2-1a06a7b1db02}"
+"06/01/2026 09:32:06","12","Informa??es","Microsoft-Windows-UserModePowerService","O processo C:\Windows\ImmersiveControlPanel\SystemSettings.exe (ID do processo:18936) rep?s o esquema de pol?ticas de {c5d1f0e6-e66e-4f72-9dc2-1a06a7b1db02} para {c5d1f0e6-e66e-4f72-9dc2-1a06a7b1db02}"
+"06/01/2026 09:32:04","12","Informa??es","Microsoft-Windows-UserModePowerService","O processo C:\Windows\ImmersiveControlPanel\SystemSettings.exe (ID do processo:18936) rep?s o esquema de pol?ticas de {c5d1f0e6-e66e-4f72-9dc2-1a06a7b1db02} para {c5d1f0e6-e66e-4f72-9dc2-1a06a7b1db02}"
+"06/01/2026 08:47:46","4266","Aviso","Tcpip","Falha no pedido para alocar o n?mero da porta ef?mero a partir do espa?o da porta UDP global, porque todas as portas est?o a ser utilizadas."
+"06/01/2026 08:22:49","19","Informa??es","Microsoft-Windows-WindowsUpdateClient","Instala??o com ?xito: O Windows instalou com ?xito a seguinte atualiza??o: Atualiza??o das Informa??es de Seguran?a do Microsoft Defender Antivirus - 2267602 KB (vers?o 1.443.524.0) - Canal atual (amplo)"
+"06/01/2026 08:22:37","43","Informa??es","Microsoft-Windows-WindowsUpdateClient","Instala??o Iniciada: o Windows iniciou a instala??o da seguinte atualiza??o: Atualiza??o das Informa??es de Seguran?a do Microsoft Defender Antivirus - 2267602 KB (vers?o 1.443.524.0) - Canal atual (amplo)"
+"06/01/2026 08:22:37","44","Informa??es","Microsoft-Windows-WindowsUpdateClient","O Windows Update iniciou a transfer?ncia de uma atualiza??o."
+"06/01/2026 08:22:20","7000","Erro","Service Control Manager","O servi?o System Interface Foundation Service falhou o arranque devido ao seguinte erro: 
+O sistema n?o conseguiu localizar o ficheiro especificado."
+"06/01/2026 08:13:20","16","Informa??es","Microsoft-Windows-Kernel-General","O hist?rico de acessos no ramo de registo \??\C:\WINDOWS\System32\SMI\Store\Machine\schema.dat foi limpo durante a atualiza??o de 1 chaves e a cria??o de 1 p?ginas modificadas."
+"06/01/2026 08:12:21","113","Informa??es","Microsoft-Windows-HttpService","Tentativa de adicionar o URL (http://localhost:50131/) ao grupo de URLs (0xFE00000A20000001). Estado: 0x0. ID do processo 0x4990 caminho execut?vel \Device\HarddiskVolume3\Program Files (x86)\Lenovo\VantageService\4.2511.18.0\LenovoVantage-(LenovoServiceBridgeAddin).exe, utilizador S-1-5-21-254359493-1357856145-319975482-1001"
+"06/01/2026 08:12:21","111","Informa??es","Microsoft-Windows-HttpService","Crie 0xFE00000A20000001 de grupo de URLs. Estado 0x0. ID do processo 0x4990 caminho execut?vel \Device\HarddiskVolume3\Program Files (x86)\Lenovo\VantageService\4.2511.18.0\LenovoVantage-(LenovoServiceBridgeAddin).exe, utilizador S-1-5-21-254359493-1357856145-319975482-1001"
+"06/01/2026 08:08:42","10016","Aviso","Microsoft-Windows-DistributedCOM","As defini??es de permiss?o de espec?fico/a(s) da aplica??o n?o concedem permiss?o de Local Ativa??o para a aplica??o de Servidor COM com CLSID 
+{2593F8B9-4EAF-457C-B68A-50F6B8EA6B54}
+ e APPID 
+{15C20B67-12E7-4BB6-92BB-7AFF07997402}
+ ao SID (S-1-5-21-254359493-1357856145-319975482-1001) de utilizador LAPTOP-JM3FE4KH\pedro a partir do endere?o LocalHost (Com LRPC) em execu??o no SID (Indispon?vel) de contentor aplicacional Indispon?vel. Esta permiss?o de seguran?a pode ser modificada utilizando a ferramenta administrativa de Servi?os de Componentes."
+"06/01/2026 08:08:20","7000","Erro","Service Control Manager","O servi?o System Interface Foundation Service falhou o arranque devido ao seguinte erro: 
+O sistema n?o conseguiu localizar o ficheiro especificado."
+"06/01/2026 08:08:13","1","Informa??es","Microsoft-Windows-Kernel-General","A hora do sistema foi alterada para ?2026?-?01?-?06T08:08:13.086401900Z de ?2026?-?01?-?06T08:08:13.084829700Z.
+Tempo Delta: 1 ms
+
+Raz?o da Altera??o: An application or system component changed the time.
+Processo: '\Device\HarddiskVolume3\Windows\System32\svchost.exe' (PID 24432).
+
+Hora de RTC: ?2026?-?01?-?06T08:08:13.086401900Z
+O tempo do hor?rio atual: 0
+A hora do RTC est? em UTC: false
+A hora do sistema baseou-se na hora RTC: false"
+"06/01/2026 08:08:13","24","Informa??es","Microsoft-Windows-Kernel-General","As informa??es de fuso hor?rio foram atualizadas com a raz?o de sa?da 0. O deslocamento de fuso hor?rio atual ? 0."
+"06/01/2026 08:08:13","35","Informa??es","Microsoft-Windows-Time-Service","The time service is now synchronizing the system time with the time source time.windows.com,0x9 (ntp.m|0x9|0.0.0.0:123->51.145.123.29:123) with reference id 494637363. Current local stratum number is 4."
+"06/01/2026 08:07:57","37","Informa??es","Microsoft-Windows-Time-Service","The time provider NtpClient is currently receiving valid time data from time.windows.com,0x9 (ntp.m|0x9|0.0.0.0:123->51.145.123.29:123)."
