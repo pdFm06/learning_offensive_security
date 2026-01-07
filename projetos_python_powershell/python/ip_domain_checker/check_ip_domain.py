@@ -19,6 +19,9 @@ ipv4_pattern = r"""
 )){3} # Repete-se 3 vezes para ficar ao tudo 4 octetos
 $ #Fim da string
 """
+ipv4_regex = re.compile(ipv4_pattern, re.VERBOSE)
+service_pattern = r"^(\d+)\/(tcp|udp)\s+open\s+(\S+)\s*(.*)$"
+
 
 domain_pattern = r"""
 ^
