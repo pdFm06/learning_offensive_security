@@ -1,0 +1,15 @@
+[2026-01-01 10:15:30] INFO  Job job_001 started
+[2026-01-01 10:15:31] DEBUG Loading configuration file
+[2026-01-01 10:15:32] INFO  Connecting to database
+[2026-01-01 10:15:33] INFO  Processing records...
+[2026-01-01 10:15:35] INFO  Records processed: 1200
+[2026-01-01 10:15:35] INFO  Job job_001 finished successfully in 1532 ms
+[2026-01-01 10:17:00] INFO  Job job_002 started
+[2026-01-01 10:17:01] INFO  Connecting to upstream service
+[2026-01-01 10:17:02] ERROR Connection timeout to upstream service
+[2026-01-01 10:17:02] INFO  Job job_002 failed after 245 ms
+[2026-01-01 10:20:10] INFO  Job job_003 started
+[2026-01-01 10:20:11] INFO  Processing records...
+[2026-01-01 10:20:12] WARNING Invalid record format detected, skipping
+[2026-01-01 10:20:13] INFO  Records processed: 860
+[2026-01-01 10:20:13] INFO  Job job_003 finished with warnings in 987 ms
