@@ -19,11 +19,14 @@ Designed for CTFs, labs and authorized security assessments.
 
 ## Installation
 
+```bash
 sudo apt install nmap gobuster dirsearch whatweb seclists
-git clone 
-
+git clone https://github.com/pdFm06/learning_offensive_security/tree/main/tools/web_enum
+cd web_enum
+```
 ## Usage
 
+```bash
 sudo python3 webenum.py -u cap.htb -p 80 -w wordlist.txt
 
 With options:
@@ -32,5 +35,6 @@ With options:
 --no-dirsearch
 --no-whatweb
 --verbose
+```
 
 Some Nmap scans may require elevated privileges.
