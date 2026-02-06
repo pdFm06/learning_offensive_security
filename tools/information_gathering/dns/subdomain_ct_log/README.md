@@ -19,7 +19,7 @@ Extracts domains and subdomains from Certificate Transparency logs using crt.sh.
 ### Setup
 
 ```bash
-git clone https://github.com/<user>/subdomain_ct_log.git
+git clone https://github.com/pdFm06/learning_offensive_security/tree/main/tools/information_gathering/dns/subdomain_ct_log
 cd subdomain_ct_log
 pip install -r requirements.txt
 
