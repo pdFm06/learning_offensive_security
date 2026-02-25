@@ -1,0 +1,49 @@
+Starting Nmap 7.94 ( https://nmap.org ) at 2026-02-22 14:32 UTC
+Nmap scan report for server.local (192.168.1.10)
+Host is up (0.0032s latency).
+Not shown: 65525 closed tcp ports (reset)
+
+PORT      STATE SERVICE       VERSION
+21/tcp    open  ftp           vsftpd 3.0.3
+22/tcp    open  ssh           OpenSSH 8.2p1 Ubuntu 4ubuntu0.5 (Ubuntu Linux; protocol 2.0)
+25/tcp    open  smtp          Postfix smtpd
+53/tcp    open  domain        ISC BIND 9.16.1 (Ubuntu Linux)
+80/tcp    open  http          Apache httpd 2.4.41 ((Ubuntu))
+110/tcp   open  pop3          Dovecot pop3d
+139/tcp   open  netbios-ssn   Samba smbd 4.13.17-Ubuntu
+443/tcp   open  ssl/http      Apache httpd 2.4.41
+445/tcp   open  microsoft-ds  Samba smbd 4.13.17-Ubuntu
+3306/tcp  open  mysql         MySQL 8.0.28
+
+Service Info: Host: SERVER; OS: Linux; CPE: cpe:/o:linux:linux_kernel
+
+Host script results:
+| smb-os-discovery:
+|   OS: Windows 6.1 (Samba 4.13.17-Ubuntu)
+|   Computer name: server
+|   NetBIOS computer name: SERVER
+|   Domain name: WORKGROUP
+|_  System time: 2026-02-22T14:32:48+00:00
+
+| ssl-cert:
+|   Subject: commonName=server.local
+|   Issuer: commonName=server.local
+|   Public Key type: rsa
+|   Public Key bits: 2048
+|   Not valid before: 2025-11-10T00:00:00
+|   Not valid after:  2030-11-08T23:59:59
+|_  MD5: 12:34:56:78:9A:BC:DE:F0
+
+| http-title: Apache2 Ubuntu Default Page: It works
+|_Requested resource was /
+
+| mysql-info:
+|   Protocol: 10
+|   Version: 8.0.28
+|   Thread ID: 12
+|   Capabilities flags: 65535
+|   Some Capabilities: SupportsTransactions, LongColumnFlag
+|_  Status: Autocommit
+
+OS detection performed. Please report any incorrect results at https://nmap.org/submit/
+Nmap done: 1 IP address (1 host up) scanned in 45.62 seconds

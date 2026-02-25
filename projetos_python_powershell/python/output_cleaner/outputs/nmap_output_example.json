@@ -1,0 +1,64 @@
+{
+    "server.local (192.168.1.10)": [
+        {
+            "Port": "21/tcp",
+            "State": "open",
+            "Service": "ftp",
+            "Version": "vsftpd 3.0.3"
+        },
+        {
+            "Port": "22/tcp",
+            "State": "open",
+            "Service": "ssh",
+            "Version": "OpenSSH 8.2p1 Ubuntu 4ubuntu0.5 (Ubuntu Linux; protocol 2.0)"
+        },
+        {
+            "Port": "25/tcp",
+            "State": "open",
+            "Service": "smtp",
+            "Version": "Postfix smtpd"
+        },
+        {
+            "Port": "53/tcp",
+            "State": "open",
+            "Service": "domain",
+            "Version": "ISC BIND 9.16.1 (Ubuntu Linux)"
+        },
+        {
+            "Port": "80/tcp",
+            "State": "open",
+            "Service": "http",
+            "Version": "Apache httpd 2.4.41 ((Ubuntu))"
+        },
+        {
+            "Port": "110/tcp",
+            "State": "open",
+            "Service": "pop3",
+            "Version": "Dovecot pop3d"
+        },
+        {
+            "Port": "139/tcp",
+            "State": "open",
+            "Service": "netbios-ssn",
+            "Version": "Samba smbd 4.13.17-Ubuntu"
+        },
+        {
+            "Port": "443/tcp",
+            "State": "open",
+            "Service": "ssl/http",
+            "Version": "Apache httpd 2.4.41"
+        },
+        {
+            "Port": "445/tcp",
+            "State": "open",
+            "Service": "microsoft-ds",
+            "Version": "Samba smbd 4.13.17-Ubuntu"
+        },
+        {
+            "Port": "3306/tcp",
+            "State": "open",
+            "Service": "mysql",
+            "Version": "MySQL 8.0.28"
+        }
+    ]
+}

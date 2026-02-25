@@ -1,0 +1,180 @@
+{
+    "web-gw.test (192.0.2.10)": [
+        {
+            "Port": "22/tcp",
+            "State": "open",
+            "Service": "ssh",
+            "Version": "OpenSSH 8.9p1 Ubuntu 3ubuntu0.5 (Ubuntu Linux; protocol 2.0)"
+        },
+        {
+            "Port": "80/tcp",
+            "State": "open",
+            "Service": "http",
+            "Version": "nginx 1.22.1"
+        },
+        {
+            "Port": "443/tcp",
+            "State": "open",
+            "Service": "ssl/http",
+            "Version": "nginx 1.22.1"
+        },
+        {
+            "Port": "8080/tcp",
+            "State": "open",
+            "Service": "http-proxy",
+            "Version": "mitmproxy 9.0.1"
+        },
+        {
+            "Port": "8443/tcp",
+            "State": "open",
+            "Service": "ssl/http-alt",
+            "Version": "Jetty 9.4.52.v20230823"
+        },
+        {
+            "Port": "10000/tcp",
+            "State": "open",
+            "Service": "http",
+            "Version": "MiniServ 1.930 (Webmin httpd)"
+        }
+    ],
+    "db01.test (192.0.2.20)": [
+        {
+            "Port": "21/tcp",
+            "State": "open",
+            "Service": "ftp",
+            "Version": "vsftpd 3.0.5"
+        },
+        {
+            "Port": "22/tcp",
+            "State": "open",
+            "Service": "ssh",
+            "Version": "OpenSSH 8.2p1 Ubuntu 4ubuntu0.10 (Ubuntu Linux; protocol 2.0)"
+        },
+        {
+            "Port": "111/tcp",
+            "State": "open",
+            "Service": "rpcbind",
+            "Version": "2-4 (RPC #100000)"
+        },
+        {
+            "Port": "2049/tcp",
+            "State": "open",
+            "Service": "nfs",
+            "Version": "3-4 (RPC #100003)"
+        },
+        {
+            "Port": "3306/tcp",
+            "State": "open",
+            "Service": "mysql",
+            "Version": "MySQL 8.0.33"
+        },
+        {
+            "Port": "5432/tcp",
+            "State": "open",
+            "Service": "postgresql",
+            "Version": "PostgreSQL DB 14.9 (Ubuntu 14.9-0ubuntu0.22.04.1)"
+        },
+        {
+            "Port": "6379/tcp",
+            "State": "open",
+            "Service": "redis",
+            "Version": "Redis key-value store 6.0.16"
+        }
+    ],
+    "win-jump.test (192.0.2.30)": [
+        {
+            "Port": "135/tcp",
+            "State": "open",
+            "Service": "msrpc",
+            "Version": "Microsoft Windows RPC"
+        },
+        {
+            "Port": "139/tcp",
+            "State": "open",
+            "Service": "netbios-ssn",
+            "Version": "Microsoft Windows netbios-ssn"
+        },
+        {
+            "Port": "445/tcp",
+            "State": "open",
+            "Service": "microsoft-ds",
+            "Version": "Windows Server 2019 Standard 17763 microsoft-ds"
+        },
+        {
+            "Port": "3389/tcp",
+            "State": "open",
+            "Service": "ms-wbt-server",
+            "Version": "Microsoft Terminal Services"
+        },
+        {
+            "Port": "5985/tcp",
+            "State": "open",
+            "Service": "http",
+            "Version": "Microsoft HTTPAPI httpd 2.0 (SSDP/UPnP)"
+        },
+        {
+            "Port": "47001/tcp",
+            "State": "open",
+            "Service": "http",
+            "Version": "Microsoft HTTPAPI httpd 2.0 (SSDP/UPnP)"
+        }
+    ],
+    "lab-router.test (198.51.100.1)": [
+        {
+            "Port": "22/tcp",
+            "State": "open",
+            "Service": "ssh",
+            "Version": "Dropbear sshd 2022.83 (protocol 2.0)"
+        },
+        {
+            "Port": "53/tcp",
+            "State": "open",
+            "Service": "domain",
+            "Version": "dnsmasq 2.86"
+        },
+        {
+            "Port": "80/tcp",
+            "State": "open",
+            "Service": "http",
+            "Version": "uhttpd 2023-01-01"
+        },
+        {
+            "Port": "443/tcp",
+            "State": "open",
+            "Service": "ssl/http",
+            "Version": "uhttpd"
+        }
+    ],
+    "iot-cam.test (198.51.100.25)": [
+        {
+            "Port": "23/tcp",
+            "State": "open",
+            "Service": "telnet",
+            "Version": "BusyBox telnetd"
+        },
+        {
+            "Port": "80/tcp",
+            "State": "open",
+            "Service": "http",
+            "Version": "Boa HTTPd 0.94.14rc21"
+        },
+        {
+            "Port": "554/tcp",
+            "State": "open",
+            "Service": "rtsp?",
+            "Version": ""
+        },
+        {
+            "Port": "8000/tcp",
+            "State": "open",
+            "Service": "http-alt",
+            "Version": "nginx 1.18.0"
+        },
+        {
+            "Port": "8081/tcp",
+            "State": "open",
+            "Service": "http-proxy",
+            "Version": "tinyproxy 1.11.1"
+        }
+    ]
+}
