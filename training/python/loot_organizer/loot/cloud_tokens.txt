@@ -1,0 +1,5 @@
+# Tokens API fictícios
+
+Azure_Storage_Token = az-2026-FAKE-91jd82jd82jd
+Internal_API_Key = acme-internal-2026-xx91kska82
+Backup_System_Token = bkp-FAKE-TOKEN-001

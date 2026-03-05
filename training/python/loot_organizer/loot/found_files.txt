@@ -1,0 +1,4 @@
+C:\Finance\orcamento_2026.xlsx
+C:\IT\passwords_old.xlsx
+C:\Backups\db_backup_2025.bak
+C:\Users\Administrator\Desktop\VPN-Config.txt

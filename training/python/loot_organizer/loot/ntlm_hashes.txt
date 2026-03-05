@@ -1,0 +1,5 @@
+# NTLM hashes fictícias
+
+j.silva:1001:aad3b435b51404eeaad3b435b51404ee:5f4dcc3b5aa765d61d8327deb882cf99:::
+m.rodrigues:1002:aad3b435b51404eeaad3b435b51404ee:e99a18c428cb38d5f260853678922e03:::
+svc_backup:1105:aad3b435b51404eeaad3b435b51404ee:098f6bcd4621d373cade4e832627b4f6:::
