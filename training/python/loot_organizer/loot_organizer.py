@@ -18,6 +18,15 @@ import pathlib
 # Dump extensions
 dump_ext = [".sql", ".db", ".sqlite", ".csv"]
 
+# SSH
+SSH_PATTERNS = [
+    "-----begin openssh private key-----",
+    "-----begin rsa private key-----",
+    "ssh-rsa",
+    "ssh-ed25519"
+]
+
+
 def get_files(path=None):
     # Receber o diretório e listar os ficheiros dentro dele.
     
@@ -49,7 +58,28 @@ def classify_files(files):
         "Notes": []
     }
 
+
     for file in files:
+        ssh_key = False
+
+        with file.open(errors="ignore") as f:
+            counter = 0
+
+            for line in f:
+                line = line.strip().lower()
+            
+                if any(line.startswith(pattern) for pattern in SSH_PATTERNS):
+                    ssh_key = True
+                    break
+
+                counter += 1
+                if counter >= 10:
+                    break
+
+        if ssh_key:
+            plan["Keys"].append(file)
+            continue
+
         ext = file.suffix.lower()
         
         if ext == ".hash":
