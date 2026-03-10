@@ -13,7 +13,7 @@
 
 ### Código ###
 # Bibliotecas necessárias
-import pathlib
+from pathlib import Path
 
 # Dump extensions
 dump_ext = [".sql", ".db", ".sqlite", ".csv"]
@@ -31,9 +31,9 @@ def get_files(path=None):
     # Receber o diretório e listar os ficheiros dentro dele.
     
     if path is None:
-        dir_list = pathlib.Path.cwd()
+        dir_list = Path.cwd()
     else:
-        dir_list = pathlib.Path(path)
+        dir_list = Path(path)
     
     files = []
 
@@ -61,6 +61,7 @@ def classify_files(files):
 
     for file in files:
         ssh_key = False
+        credential_found = False
 
         with file.open(errors="ignore") as f:
             counter = 0
@@ -72,12 +73,20 @@ def classify_files(files):
                     ssh_key = True
                     break
 
+                elif ":" in line:
+                    credential_found = True
+                    break
+
                 counter += 1
                 if counter >= 10:
                     break
 
         if ssh_key:
             plan["Keys"].append(file)
+            continue
+
+        if credential_found:
+            plan["Credentials"].append(file)
             continue
 
         ext = file.suffix.lower()
@@ -89,13 +98,21 @@ def classify_files(files):
         elif ext == ".txt":
             plan["Notes"].append(file)
         
-    print(plan)
+    return plan
+
+def create_directories(plan):
+    #Verificar que categorias é que existem
+    for categoria, value in plan.items():
+        if value:
+            Path(categoria).mkdir(exist_ok=True)
+            print("Pastas com ficheiros criadas")
 
 
 def main():
     #print(get_files("C:/Users/pedro/Documents/learning_offensive_security/training/python/loot_organizer/loot"))
     files = get_files("C:/Users/pedro/Documents/learning_offensive_security/training/python/loot_organizer/loot")
-    classify_files(files)
+    plan = classify_files(files)
+    create_directories(plan)
 
 
 
