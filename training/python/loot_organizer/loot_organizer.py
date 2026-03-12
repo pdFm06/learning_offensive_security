@@ -14,6 +14,7 @@
 ### Código ###
 # Bibliotecas necessárias
 from pathlib import Path
+import argparse
 
 # Dump extensions
 dump_ext = [".sql", ".db", ".sqlite", ".csv"]
@@ -46,9 +47,9 @@ def get_files(path=None):
 
         return files
     else:
-        raise FileNotFoundError("Path does not exist")
+        raise FileNotFoundError(f"{path} does not exist")
     
-def classify_files(files):
+def classify_files(files, dry_run):
     # Categorias
     plan = {
         "Keys": [],
@@ -100,21 +101,64 @@ def classify_files(files):
         
     return plan
 
-def create_directories(plan):
+def create_directories(plan, dry_run):
     #Verificar que categorias é que existem
     for categoria, value in plan.items():
         if value:
-            Path(categoria).mkdir(exist_ok=True)
-            print("Pastas com ficheiros criadas")
+            if dry_run:
+                print("Would create...")
+                print(f"{categoria}")
+            else:
+                Path(categoria).mkdir(exist_ok=True)
+    
+    print("Pastas com ficheiros criadas")
+
+def move_files(plan):
+    for categoria, value in plan.items():
+        dest_dir = Path(categoria)
+
+        for file in value:
+            destination = dest_dir / file.name
+            if destination.exists():
+                number = 1
+
+                while True:
+                    new_destination = dest_dir / f"{file.stem}_{number}{file.suffix}"
+                    
+                    if not new_destination.exists():
+                        destination = new_destination
+                        break
+
+                    number += 1
+
+            file.rename(destination)
+
+def print_summary(plan):
+
+    total = 0
+    print("===== Loot Summary =====")
+    for categoria, value in plan.items():
+        print(f"{categoria}: {len(value)} files")
+        total = total + len(value)
+    
+    print("\n")
+    print(f"Total: {total} files")
 
 
 def main():
-    #print(get_files("C:/Users/pedro/Documents/learning_offensive_security/training/python/loot_organizer/loot"))
-    files = get_files("C:/Users/pedro/Documents/learning_offensive_security/training/python/loot_organizer/loot")
-    plan = classify_files(files)
-    create_directories(plan)
 
+    # Parser
+    parser = argparse.ArgumentParser()
+    parser.add_argument("path", nargs="?", default=None)
+    parser.add_argument("--dry-run", action="store_true")
 
+    args = parser.parse_args()
+
+    files = get_files(args.path)
+    plan = classify_files(files, args.dry_run)
+    create_directories(plan, args.dry_run)
+    move_files(plan)
+    print_summary(plan)
 
 if __name__ == "__main__":
     main()

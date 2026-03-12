@@ -1,0 +1,7 @@
+# Dump fictício - exemplo de laboratório
+
+ACME\j.silva : Primavera2026!
+ACME\m.rodrigues : Password123!
+ACME\svc_backup : B@ckupSvc2026!
+ACME\sql_svc : SQLSrv!2026
+ACME\helpdesk : HelpDesk#2026

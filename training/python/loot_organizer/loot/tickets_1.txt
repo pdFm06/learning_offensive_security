@@ -1,0 +1,7 @@
+# Tickets Kerberos fictícios
+
+Service: cifs/DC01.acme.local
+User: svc_backup
+Start: 2026-03-01 09:14:33
+End: 2026-03-01 19:14:33
+Encryption: AES256
