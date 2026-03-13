@@ -15,6 +15,7 @@
 # Bibliotecas necessárias
 from pathlib import Path
 import argparse
+import logging
 
 # Dump extensions
 dump_ext = [".sql", ".db", ".sqlite", ".csv"]
@@ -26,6 +27,12 @@ SSH_PATTERNS = [
     "ssh-rsa",
     "ssh-ed25519"
 ]
+
+# Logging
+logging.basicConfig(
+    level=logging.INFO,
+    format="%(levelname)s: %(message)s"
+)
 
 
 def get_files(path=None):
@@ -49,7 +56,7 @@ def get_files(path=None):
     else:
         raise FileNotFoundError(f"{path} does not exist")
     
-def classify_files(files, dry_run):
+def classify_files(files):
     # Categorias
     plan = {
         "Keys": [],
@@ -106,17 +113,15 @@ def create_directories(plan, dry_run):
     for categoria, value in plan.items():
         if value:
             if dry_run:
-                print("Would create...")
-                print(f"{categoria}")
+                logging.info(f"Would create directory: {categoria}")
             else:
+                logging.info(f"Creating directory {categoria}...")
                 Path(categoria).mkdir(exist_ok=True)
-    
-    print("Pastas com ficheiros criadas")
 
-def move_files(plan):
+def move_files(plan, dry_run):
     for categoria, value in plan.items():
         dest_dir = Path(categoria)
-
+        
         for file in value:
             destination = dest_dir / file.name
             if destination.exists():
@@ -130,8 +135,12 @@ def move_files(plan):
                         break
 
                     number += 1
-
-            file.rename(destination)
+            if dry_run:
+                logging.info(f"Would move {file.name} -> {destination}")
+            else:
+                dest_dir.mkdir(exist_ok=True)
+                logging.info(f"Moving {file.name} -> {destination}")
+                file.rename(destination)
 
 def print_summary(plan):
 
@@ -155,9 +164,9 @@ def main():
     args = parser.parse_args()
 
     files = get_files(args.path)
-    plan = classify_files(files, args.dry_run)
+    plan = classify_files(files)
     create_directories(plan, args.dry_run)
-    move_files(plan)
+    move_files(plan, args.dry_run)
     print_summary(plan)
 
 if __name__ == "__main__":
