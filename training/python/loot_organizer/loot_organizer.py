@@ -29,13 +29,8 @@ SSH_PATTERNS = [
 ]
 
 # Logging
-logging.basicConfig(
-    level=logging.INFO,
-    format="%(levelname)s: %(message)s"
-)
 
-
-def get_files(path=None):
+def get_files(path=None, recursive=False):
     # Receber o diretório e listar os ficheiros dentro dele.
     
     if path is None:
@@ -47,10 +42,19 @@ def get_files(path=None):
 
     if dir_list.exists() and dir_list.is_dir():
 
+        if recursive:
+            iterator = dir_list.rglob("*")
+        else:
+            iterator = dir_list.iterdir()
+
+        logging.debug(f"Scanning directory: {dir_list}")
+
         # Filtrar se é um diretório ou se é um ficheiro
-        for item in dir_list.iterdir():
+        for item in iterator:
             if item.is_file():
                 files.append(item)
+
+        logging.debug(f"Found {len(files)} files")
 
         return files
     else:
@@ -68,6 +72,7 @@ def classify_files(files):
 
 
     for file in files:
+        logging.debug(f"Checking file {file.name}")
         ssh_key = False
         credential_found = False
 
@@ -79,10 +84,12 @@ def classify_files(files):
             
                 if any(line.startswith(pattern) for pattern in SSH_PATTERNS):
                     ssh_key = True
+                    logging.debug(f"{file.name}: SSH pattern detected")
                     break
 
                 elif ":" in line:
                     credential_found = True
+                    logging.debug(f"{file.name}: credential pattern detected")
                     break
 
                 counter += 1
@@ -91,20 +98,28 @@ def classify_files(files):
 
         if ssh_key:
             plan["Keys"].append(file)
+            logging.debug(f"{file.name}: classified as Keys")
             continue
 
         if credential_found:
             plan["Credentials"].append(file)
+            logging.debug(f"{file.name}: classified as Credentials")
             continue
 
         ext = file.suffix.lower()
+        logging.debug(f"{file.name}: extension {ext}")
         
         if ext == ".hash":
             plan["Hashes"].append(file)
+            logging.debug(f"{file.name}: classified as Hashes")
         elif ext in dump_ext:
             plan["Dumps"].append(file)
+            logging.debug(f"{file.name}: classified as Dumps")
         elif ext == ".txt":
             plan["Notes"].append(file)
+            logging.debug(f"{file.name}: classified as Notes")
+        else:
+            logging.debug(f"{file.name}: no category matched")
         
     return plan
 
@@ -158,12 +173,29 @@ def main():
 
     # Parser
     parser = argparse.ArgumentParser()
+
     parser.add_argument("path", nargs="?", default=None)
     parser.add_argument("--dry-run", action="store_true")
+    parser.add_argument("--verbose", action="store_true")
+    parser.add_argument("--debug", action="store_true")
+    parser.add_argument("--recursive", action="store_true")
 
     args = parser.parse_args()
+    level = None
 
-    files = get_files(args.path)
+    if args.debug:
+        level = logging.DEBUG
+    elif args.verbose:
+        level = logging.INFO
+    else:
+        level = logging.INFO
+
+    logging.basicConfig(
+        level=level,
+        format="%(levelname)s: %(message)s"
+    )
+
+    files = get_files(args.path, args.recursive)
     plan = classify_files(files)
     create_directories(plan, args.dry_run)
     move_files(plan, args.dry_run)
