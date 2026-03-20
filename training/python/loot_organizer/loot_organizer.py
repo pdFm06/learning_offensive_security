@@ -67,7 +67,9 @@ def classify_files(files):
         "Credentials": [],
         "Hashes": [],
         "Dumps": [],
-        "Notes": []
+        "Notes": [],
+        "Scans": [],
+        "Scripts": []
     }
 
 
@@ -75,19 +77,46 @@ def classify_files(files):
         logging.debug(f"Checking file {file.name}")
         ssh_key = False
         credential_found = False
+        hash_found = False
 
         with file.open(errors="ignore") as f:
             counter = 0
 
             for line in f:
                 line = line.strip().lower()
-            
+
+                #Deteção de hashes
+                has_dollar = "$" in line
+                many_colons = line.count(":") >= 2
+                
+                clean_line = line.replace(" ", "")
+                hex_chars = "0123456789abcdef"
+                is_hex = clean_line and all(c in hex_chars for c in clean_line)
+                long_enough = len(clean_line) >= 32
+                hex_hash = is_hex and long_enough
+
+                is_hash = has_dollar or many_colons or hex_hash
+
+                #Deteção de credenciais
+                one_colon = line.count(":") == 1
+
+                not_http = not line.startswith("http")
+                not_comment = not line.startswith("#")
+                not_key = not line.startswith("-----")
+
+                is_credential = one_colon and not_http and not_comment and not_key
+
                 if any(line.startswith(pattern) for pattern in SSH_PATTERNS):
                     ssh_key = True
                     logging.debug(f"{file.name}: SSH pattern detected")
                     break
 
-                elif ":" in line:
+                if is_hash:
+                    hash_found = True
+                    logging.debug(f"{file.name}: Hash pattern detected")
+                    break
+                
+                if is_credential:
                     credential_found = True
                     logging.debug(f"{file.name}: credential pattern detected")
                     break
@@ -101,6 +130,11 @@ def classify_files(files):
             logging.debug(f"{file.name}: classified as Keys")
             continue
 
+        if hash_found:
+            plan["Hashes"].append(file)
+            logging.debug(f"{file.name}: classified as Hashes")
+            continue
+        
         if credential_found:
             plan["Credentials"].append(file)
             logging.debug(f"{file.name}: classified as Credentials")
@@ -109,15 +143,18 @@ def classify_files(files):
         ext = file.suffix.lower()
         logging.debug(f"{file.name}: extension {ext}")
         
-        if ext == ".hash":
-            plan["Hashes"].append(file)
-            logging.debug(f"{file.name}: classified as Hashes")
-        elif ext in dump_ext:
+        if ext in dump_ext:
             plan["Dumps"].append(file)
             logging.debug(f"{file.name}: classified as Dumps")
         elif ext == ".txt":
             plan["Notes"].append(file)
             logging.debug(f"{file.name}: classified as Notes")
+        elif ext == ".nmap":
+            plan["Scans"].append(file)
+            logging.debug(f"{file.name}: classified as Scans")
+        elif ext == ".py":
+            plan["Scripts"].append(file)
+            logging.debug(f"{file.name}: classified as Scripts")
         else:
             logging.debug(f"{file.name}: no category matched")
         
