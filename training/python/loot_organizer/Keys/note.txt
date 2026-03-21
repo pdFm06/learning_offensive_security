@@ -1,3 +1,0 @@
------BEGIN OPENSSH PRIVATE KEY-----
-(base64 data...)
------END OPENSSH PRIVATE KEY-----

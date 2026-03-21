@@ -20,12 +20,54 @@ import logging
 # Dump extensions
 dump_ext = [".sql", ".db", ".sqlite", ".csv"]
 
+# Scan extensions
+scan_ext = [".nmap", ".xml", ".gnmap", ".masscan"]
+
+# Script extensions
+script_ext = [".py", ".js", ".rb", ".vbs"]
+
+# Config extensions
+config_ext = [
+    ".ini",
+    ".conf",
+    ".cfg",
+    ".json",
+    ".yaml",
+    ".yml",
+    ".env",
+    ".properties",
+    ".xml"
+]
+
+# Key extensions
+key_ext = [
+    ".pem",
+    ".key",
+    ".pfx",
+    ".p12",
+    ".crt",
+    ".cer",
+    ".der"
+]
+
 # SSH
 SSH_PATTERNS = [
     "-----begin openssh private key-----",
     "-----begin rsa private key-----",
     "ssh-rsa",
     "ssh-ed25519"
+]
+
+# Key patterns
+KEY_PATTERNS = [
+    "-----begin rsa private key-----",
+    "-----begin openssh private key-----",
+    "-----begin private key-----",
+    "-----begin ec private key-----",
+    "-----begin dsa private key-----",
+    "-----begin certificate-----",
+    "-----begin encrypted private key-----",
+    "-----begin pgp private key block-----"
 ]
 
 # Logging
@@ -64,20 +106,42 @@ def classify_files(files):
     # Categorias
     plan = {
         "Keys": [],
+        "SSH": [],
         "Credentials": [],
         "Hashes": [],
         "Dumps": [],
         "Notes": [],
         "Scans": [],
-        "Scripts": []
+        "Scripts": [],
+        "Configs": []
     }
 
 
     for file in files:
         logging.debug(f"Checking file {file.name}")
         ssh_key = False
+        key_found = False
         credential_found = False
         hash_found = False
+
+        ext = file.suffix.lower()
+
+        if ext in scan_ext:
+            plan["Scans"].append(file)
+            logging.debug(f"{file.name}: classified as Scans (ext)")
+            continue
+        elif ext in script_ext:
+            plan["Scripts"].append(file)
+            logging.debug(f"{file.name}: classified as Scripts (ext)")
+            continue
+        elif ext in dump_ext:
+            plan["Dumps"].append(file)
+            logging.debug(f"{file.name}: classified as Dumps (ext)")
+            continue
+        elif ext in key_ext:
+            plan["Keys"].append(file)
+            logging.debug(f"{file.name}: classified as Keys (ext)")
+            continue
 
         with file.open(errors="ignore") as f:
             counter = 0
@@ -111,6 +175,11 @@ def classify_files(files):
                     logging.debug(f"{file.name}: SSH pattern detected")
                     break
 
+                if any(line.startswith(pattern) for pattern in KEY_PATTERNS):
+                    key_found = True
+                    logging.debug(f"{file.name}: Key pattern detected")
+                    break
+
                 if is_hash:
                     hash_found = True
                     logging.debug(f"{file.name}: Hash pattern detected")
@@ -126,6 +195,11 @@ def classify_files(files):
                     break
 
         if ssh_key:
+            plan["SSH"].append(file)
+            logging.debug(f"{file.name}: classified as SSH")
+            continue
+
+        if key_found:
             plan["Keys"].append(file)
             logging.debug(f"{file.name}: classified as Keys")
             continue
@@ -140,23 +214,16 @@ def classify_files(files):
             logging.debug(f"{file.name}: classified as Credentials")
             continue
 
-        ext = file.suffix.lower()
+        if ext in config_ext:
+            plan["Configs"].append(file)
+            logging.debug(f"{file.name}: classified as Configs (ext)")
+            continue
+
         logging.debug(f"{file.name}: extension {ext}")
         
-        if ext in dump_ext:
-            plan["Dumps"].append(file)
-            logging.debug(f"{file.name}: classified as Dumps")
-        elif ext == ".txt":
+        if ext == ".txt":
             plan["Notes"].append(file)
             logging.debug(f"{file.name}: classified as Notes")
-        elif ext == ".nmap":
-            plan["Scans"].append(file)
-            logging.debug(f"{file.name}: classified as Scans")
-        elif ext == ".py":
-            plan["Scripts"].append(file)
-            logging.debug(f"{file.name}: classified as Scripts")
-        else:
-            logging.debug(f"{file.name}: no category matched")
         
     return plan
 
