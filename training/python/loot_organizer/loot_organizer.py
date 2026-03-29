@@ -24,7 +24,7 @@ dump_ext = [".sql", ".db", ".sqlite", ".csv"]
 scan_ext = [".nmap", ".xml", ".gnmap", ".masscan"]
 
 # Script extensions
-script_ext = [".py", ".js", ".rb", ".vbs"]
+script_ext = [".py", ".js", ".rb", ".vbs", ".sh"]
 
 # Config extensions
 config_ext = [
@@ -36,7 +36,8 @@ config_ext = [
     ".yml",
     ".env",
     ".properties",
-    ".xml"
+    ".xml",
+    ".config"
 ]
 
 # Key extensions
@@ -68,6 +69,22 @@ KEY_PATTERNS = [
     "-----begin certificate-----",
     "-----begin encrypted private key-----",
     "-----begin pgp private key block-----"
+]
+
+config_keywords_strong = [
+    "password",
+    "pass",
+    "pwd",
+    "token",
+    "secret",
+    "apikey",
+    "api_key"
+]
+
+config_keywords_weak = [
+    "user",
+    "username",
+    "login"
 ]
 
 # Logging
@@ -103,7 +120,6 @@ def get_files(path=None, recursive=False):
         raise FileNotFoundError(f"{path} does not exist")
     
 def classify_files(files):
-    # Categorias
     plan = {
         "Keys": [],
         "SSH": [],
@@ -113,118 +129,122 @@ def classify_files(files):
         "Notes": [],
         "Scans": [],
         "Scripts": [],
-        "Configs": []
+        "Configs": [],
+        "CredConfig": []
     }
-
 
     for file in files:
         logging.debug(f"Checking file {file.name}")
-        ssh_key = False
-        key_found = False
-        credential_found = False
-        hash_found = False
 
         ext = file.suffix.lower()
 
+        # --- EXTENSÕES FORTES ---
         if ext in scan_ext:
             plan["Scans"].append(file)
-            logging.debug(f"{file.name}: classified as Scans (ext)")
             continue
-        elif ext in script_ext:
+
+        if ext in script_ext:
             plan["Scripts"].append(file)
-            logging.debug(f"{file.name}: classified as Scripts (ext)")
             continue
-        elif ext in dump_ext:
+
+        if ext in dump_ext:
             plan["Dumps"].append(file)
-            logging.debug(f"{file.name}: classified as Dumps (ext)")
             continue
-        elif ext in key_ext:
+
+        if ext in key_ext:
             plan["Keys"].append(file)
-            logging.debug(f"{file.name}: classified as Keys (ext)")
             continue
 
-        with file.open(errors="ignore") as f:
-            counter = 0
+        # --- FLAGS ---
+        found_ssh = False
+        found_key = False
+        found_hash = False
+        found_credential = False
+        found_config_cred = False
 
-            for line in f:
-                line = line.strip().lower()
+        try:
+            with file.open(errors="ignore") as f:
+                for i, line in enumerate(f):
+                    if i >= 10:
+                        break
 
-                #Deteção de hashes
-                has_dollar = "$" in line
-                many_colons = line.count(":") >= 2
-                
-                clean_line = line.replace(" ", "")
-                hex_chars = "0123456789abcdef"
-                is_hex = clean_line and all(c in hex_chars for c in clean_line)
-                long_enough = len(clean_line) >= 32
-                hex_hash = is_hex and long_enough
+                    line = line.strip().lower()
 
-                is_hash = has_dollar or many_colons or hex_hash
+                    # --- SSH ---
+                    if any(line.startswith(p) for p in SSH_PATTERNS):
+                        found_ssh = True
+                        break
 
-                #Deteção de credenciais
-                one_colon = line.count(":") == 1
+                    # --- KEYS ---
+                    if any(line.startswith(p) for p in KEY_PATTERNS):
+                        found_key = True
+                        break
 
-                not_http = not line.startswith("http")
-                not_comment = not line.startswith("#")
-                not_key = not line.startswith("-----")
+                    # --- HASH ---
+                    clean = line.replace(" ", "")
+                    hex_chars = "0123456789abcdef"
 
-                is_credential = one_colon and not_http and not_comment and not_key
+                    is_hex = (
+                        clean and len(clean) >= 32
+                        and all(c in hex_chars for c in clean)
+                        and clean.isalnum()
+                    )
 
-                if any(line.startswith(pattern) for pattern in SSH_PATTERNS):
-                    ssh_key = True
-                    logging.debug(f"{file.name}: SSH pattern detected")
-                    break
+                    many_colons = (
+                        line.count(":") >= 2
+                        and " " not in line
+                        and "/" not in line
+                    )
 
-                if any(line.startswith(pattern) for pattern in KEY_PATTERNS):
-                    key_found = True
-                    logging.debug(f"{file.name}: Key pattern detected")
-                    break
+                    if "$" in line or many_colons or is_hex:
+                        found_hash = True
+                        break
 
-                if is_hash:
-                    hash_found = True
-                    logging.debug(f"{file.name}: Hash pattern detected")
-                    break
-                
-                if is_credential:
-                    credential_found = True
-                    logging.debug(f"{file.name}: credential pattern detected")
-                    break
+                    # --- CONFIG CRED (YAML + ENV) ---
+                    if not line.startswith(("#", "//", ";")):
 
-                counter += 1
-                if counter >= 10:
-                    break
+                        # YAML: password: value
+                        if ":" in line:
+                            key = line.split(":", 1)[0].strip()
+                            if key in config_keywords_strong:
+                                found_config_cred = True
 
-        if ssh_key:
+                        # ENV: password=value
+                        if any(f"{k}=" in line for k in config_keywords_strong):
+                            found_config_cred = True
+
+                        # weak
+                        if any(line.startswith(f"{k}=") for k in config_keywords_weak):
+                            if len(line) < 50:
+                                found_config_cred = True
+
+                    # --- CREDENTIAL ---
+                    if (
+                        line.count(":") == 1
+                        and "=" not in line
+                        and not line.startswith(("http", "#", "-----"))
+                    ):
+                        found_credential = True
+
+        except Exception:
+            continue
+
+        # --- PRIORIDADE FINAL ---
+        if found_ssh:
             plan["SSH"].append(file)
-            logging.debug(f"{file.name}: classified as SSH")
-            continue
-
-        if key_found:
+        elif found_key:
             plan["Keys"].append(file)
-            logging.debug(f"{file.name}: classified as Keys")
-            continue
-
-        if hash_found:
+        elif found_hash:
             plan["Hashes"].append(file)
-            logging.debug(f"{file.name}: classified as Hashes")
-            continue
-        
-        if credential_found:
+        elif found_config_cred:
+            plan["CredConfig"].append(file)
+        elif found_credential:
             plan["Credentials"].append(file)
-            logging.debug(f"{file.name}: classified as Credentials")
-            continue
-
-        if ext in config_ext:
+        elif ext in config_ext:
             plan["Configs"].append(file)
-            logging.debug(f"{file.name}: classified as Configs (ext)")
-            continue
-
-        logging.debug(f"{file.name}: extension {ext}")
-        
-        if ext == ".txt":
+        elif ext in [".txt", ".log"]:
             plan["Notes"].append(file)
-            logging.debug(f"{file.name}: classified as Notes")
-        
+
     return plan
 
 def create_directories(plan, dry_run):

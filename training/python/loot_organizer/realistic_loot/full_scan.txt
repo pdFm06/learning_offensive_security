@@ -1,0 +1,4 @@
+Starting Nmap 7.93
+PORT     STATE SERVICE
+80/tcp   open  http
+443/tcp  open  https

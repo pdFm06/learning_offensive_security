@@ -1,0 +1,3 @@
+random text
+-----BEGIN OPENSSH PRIVATE KEY-----
+AAAA
