@@ -1,0 +1,5 @@
+http://example.com
+https://sub.domain.pt/login
+https://10.0.0.1/admin
+http://test-site.net:8080/path/to/resource
+https://api.service.co.uk/v1/users?id=10
