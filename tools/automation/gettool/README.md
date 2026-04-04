@@ -113,16 +113,6 @@ python script.py -s enum -p /opt --limit 5
 
 ---
 
-## Future Improvements
-
-* Multi-keyword search
-* Auto-prioritize common directories (`/tmp`, `/opt`, `/home`)
-* Highlight executable files
-* Save results to a loot file
-* Parallel search for improved speed
-
----
-
 ## Philosophy
 
 gettool is built to be simple, fast, and practical in real engagements.

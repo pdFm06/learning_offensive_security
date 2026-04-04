@@ -13,17 +13,23 @@ def parse_args():
     parser.add_argument("-p", "--path", default="/", help="Search base path (Default: '/')")
     parser.add_argument("-s", "--search", help="Search for files/directories by keyword")
     parser.add_argument("--limit", type=int, help="Limit number of results (Default: None)")
+    parser.add_argument("--auto", action="store_true", help="Auto select first match")
     return parser.parse_args()
 
 def get_file(file, search_path="/"):
     base_path = Path(search_path)
+    matches = []
 
     for file_path in base_path.rglob(file):
         print(f"[+] Found: {file_path}")
-        return file_path
+        matches.append(file_path)
     
-    print("[!] No file found")
-    return None
+    
+    if not matches:
+        print("[!] No file found")
+        return None
+
+    return select_file(matches)
 
 def move_file(file, destination):
     if not file:
@@ -37,9 +43,35 @@ def move_file(file, destination):
     while destination_path.exists():
         destination_path = Path(destination) / f"{file.stem}_{counter}{file.suffix}"
         counter += 1
-
+    
     print(f"[+] Copying {file} -> {destination_path}")
-    shutil.copy(str(file), destination_path)
+
+    try:
+        if file.is_dir():
+            shutil.copytree(file, destination_path)
+        else:
+            shutil.copy(str(file), destination_path)
+    except Exception as e:
+        print(f"[!] Error copying: {e}")
+
+def select_file(matches):
+    if not matches:
+        return None
+
+    if len(matches) == 1:
+        return matches[0]
+
+    print("\n[+] Multiple matches found:\n")
+
+    for i, path in enumerate(matches):
+        print(f"{i}: {path}")
+
+    try:
+        choice = int(input("\nSelect file number: "))
+        return matches[choice]
+    except (ValueError, IndexError):
+        print("[!] Invalid selection")
+        return None
 
 def search_files(keyword, search_path="/", limit=None):
     base_path = Path(search_path)
